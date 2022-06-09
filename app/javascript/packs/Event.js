@@ -1,6 +1,7 @@
 import React from 'react'
 
-const formatDate = datetime => new Date(datetime).toDateString()
+const formatDate = datetime =>
+  new Date(datetime).toDateString()
 
 const Event = props => (
   <div className="event">
