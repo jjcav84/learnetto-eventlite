@@ -7,6 +7,10 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.3",
+<<<<<<< HEAD
+=======
+    "axios": "^0.27.2",
+>>>>>>> dev
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "prop-types": "^15.8.1",
     "react": "^18.1.0",
