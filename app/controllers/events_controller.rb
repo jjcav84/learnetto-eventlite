@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
   def index
+<<<<<<< HEAD
+=======
     @events = Event.order('start_datetime ASC')
   end
   def create
@@ -14,5 +16,6 @@ class EventsController < ApplicationController
   private
   def event_params
     params.require(:event).permit(:title, :start_datetime, :location)
+>>>>>>> dev
   end
 end

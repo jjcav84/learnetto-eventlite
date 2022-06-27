@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  */
+<<<<<<< HEAD
+=======
  body {
   width: 500px;
   margin: auto;
@@ -24,3 +26,4 @@ h1.logo {
   font-weight: 400;
   font-size: 40px;
 }
+>>>>>>> dev

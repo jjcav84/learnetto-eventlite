@@ -5,6 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+<<<<<<< HEAD
+=======
 events = Event.create([
   {
     title: "London Retail Expo",
@@ -27,3 +29,4 @@ events = Event.create([
     location: "Bar Salsa"
   }
 ])
+>>>>>>> dev
