@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import PropTypes from 'prop-types'
 import axios from 'axios'
+import validations from '../validations'
 
 import EventsList from './EventsList'
 import EventForm from './EventForm'
 import FormErrors from './FormErrors'
-import validations from '../validations'
 
 class Eventlite extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class Eventlite extends React.Component {
       formErrors: {},
       formValid: false
     }
+    this.logo = React.createRef()
   }
 
   static formValidations = {
@@ -44,6 +46,7 @@ class Eventlite extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault()
+    this.logo
     let newEvent = { title: this.state.title.value, start_datetime: this.state.start_datetime.value, location: this.state.location.value }
     axios({
       method: 'POST',
@@ -53,9 +56,9 @@ class Eventlite extends React.Component {
         'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content
       }
     })
-      .then((response) => {
+      .then(response => {
         this.addNewEvent(response.data)
-        this.resetFormErrors()
+        this.resetFormErrors();
       })
       .catch(error => {
         console.log(error.response.data)
@@ -92,12 +95,18 @@ class Eventlite extends React.Component {
     const events = [...this.state.events, event].sort(function (a, b) {
       return new Date(a.start_datetime) - new Date(b.start_datetime)
     })
-    this.setState({ events: events })
+    this.setState({ events: events }, this.changeLogoColour)
+  }
+
+  changeLogoColour = () => {
+    const colors = ["red", "blue", "green", "violet"]
+    this.logo.current.style.color = colors[Math.floor(Math.random() * colors.length)]
   }
 
   render() {
     return (
       <div>
+        <h1 className="logo" ref={this.logo}>Eventlite</h1>
         <FormErrors formErrors={this.state.formErrors} />
         <EventForm handleSubmit={this.handleSubmit}
           handleInput={this.handleInput}
@@ -111,12 +120,8 @@ class Eventlite extends React.Component {
   }
 }
 
-Event.propTypes = {
-  event: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    start_datetime: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired
-  })
+Eventlite.propTypes = {
+  events: PropTypes.array.isRequired
 }
 
 document.addEventListener('DOMContentLoaded', () => {
