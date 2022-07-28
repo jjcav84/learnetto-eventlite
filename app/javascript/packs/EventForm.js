@@ -1,16 +1,22 @@
 import React from 'react'
-import Event from './Event'
+import PropTypes from 'prop-types'
 
-const EventForm = (props) => (
+const FormErrors = (props) =>
   <div>
-    <h4>Create an Event:</h4>
-    <form onSubmit={props.handleSubmit}>
-      <input type="text" name="title" placeholder="Title" value={props.title} onChange={props.handleInput} />
-      <input type="text" name="start_datetime" placeholder="Date" value={props.start_datetime} onChange={props.handleInput} />
-      <input type="text" name="location" placeholder="Location" value={props.location} onChange={props.handleInput} />
-      <input type='submit' value='Make Event' disabled={!props.formValid} />
-    </form>
+    {Object.keys(props.formErrors).map((formErrorField) => {
+      return (
+        props.formErrors[formErrorField].map((error) => {
+          return (
+            <p>{formErrorField} {error}</p>
+          )
+        })
+      )
+    })}
   </div>
-)
 
-export default EventForm
+
+FormErrors.propTypes = {
+  formErrors: PropTypes.object
+}
+
+export default FormErrors

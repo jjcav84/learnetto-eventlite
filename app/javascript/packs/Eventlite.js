@@ -111,6 +111,14 @@ class Eventlite extends React.Component {
   }
 }
 
+Event.propTypes = {
+  event: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    start_datetime: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired
+  })
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const node = document.getElementById('events_data')
   const data = JSON.parse(node.getAttribute('data'))
